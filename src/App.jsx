@@ -1,35 +1,77 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+/* eslint-disable react-refresh/only-export-components */
+import { createContext, useState, useEffect } from "react";
+import Home from "./components/Home";
+import Products from "./components/Products";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Cart from "./components/Cart";
+export const ShopContext = createContext({
+  products: [],
+  cart: [],
+  addToCart: () => {},
+  delFromCart: () => {},
+});
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products")
+      .then((response) => {
+        if (response.status >= 400) {
+          throw new Error("server error");
+        } else {
+          setLoading(false);
+          return response.json();
+        }
+      })
+      .then((response) => setProducts(response));
+  }, []);
+  const addToCart = (id, amount) => {
+    const index = cart.findIndex((item) => item.id === id);
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    index === -1
+      ? setCart((prev) => [...prev, { id, amount }])
+      : setCart((prev) => [...prev.toSpliced(index, 1, { id, amount })]);
+  };
+  const delFromCart = (id) => {
+    const index = cart.findIndex((item) => item.id === id);
+    setCart((prev) => [...prev.toSpliced(index, 1)]);
+  };
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: (
+        <ShopContext.Provider
+          value={{ products, cart, addToCart, delFromCart }}
+        >
+          <Home />
+        </ShopContext.Provider>
+      ),
+    },
+    {
+      path: "/Products",
+      element: (
+        <ShopContext.Provider
+          value={{ products, cart, addToCart, delFromCart }}
+        >
+          <Products />
+          {loading && <h2>Loading</h2>}
+        </ShopContext.Provider>
+      ),
+    },
+    {
+      path: "/cart",
+      element: (
+        <ShopContext.Provider
+          value={{ products, cart, addToCart, delFromCart }}
+        >
+          <Cart />
+        </ShopContext.Provider>
+      ),
+    },
+  ]);
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
