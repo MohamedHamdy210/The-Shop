@@ -3,7 +3,6 @@ import pr from "../assets/pr.png";
 const Home = () => {
   return (
     <>
-      <NavBar />
       <div className="home-info">
         <h1>Fake Online Shopping Store </h1>
 

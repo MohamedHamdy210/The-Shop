@@ -9,7 +9,6 @@ export default function Products() {
   const cardElements = products.map((p) => <Card {...p} key={p.id} />);
   return (
     <>
-      <NavBar />
       <div className="banner flex">
         <h1>NEW YEAR <br />COLLECTION</h1>
       </div>

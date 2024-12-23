@@ -16,7 +16,7 @@ const NavBar = () => {
     navigate("/cart");
   };
   return (
-    <header className="flex-bar">
+    <>
       <div className="nav-left">
         <img src={logo} alt="logo" />
         <h2>The Shop</h2>
@@ -31,7 +31,7 @@ const NavBar = () => {
         <img src={cartLogo} alt="cart " />
         <span>{cart.length}</span>
       </div>
-    </header>
+    </>
   );
 };
 export default NavBar;

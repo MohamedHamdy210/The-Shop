@@ -13,7 +13,6 @@ export default function Cart() {
   });
   return (
     <>
-      <NavBar />
       <div className="cartPage">
         <div className="cart">
           {cartElements}

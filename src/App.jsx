@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import Products from "./components/Products";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Cart from "./components/Cart";
+import NavBar from "./components/NavBar";
 export const ShopContext = createContext({
   products: [],
   cart: [],
@@ -45,6 +46,9 @@ function App() {
         <ShopContext.Provider
           value={{ products, cart, addToCart, delFromCart }}
         >
+          <header className="flex-bar">
+            <NavBar />
+          </header>
           <Home />
         </ShopContext.Provider>
       ),
@@ -55,7 +59,12 @@ function App() {
         <ShopContext.Provider
           value={{ products, cart, addToCart, delFromCart }}
         >
+          <header className="flex-bar">
+            <NavBar />
+          </header>
+
           <Products />
+
           {loading && <h2>Loading</h2>}
         </ShopContext.Provider>
       ),
@@ -66,6 +75,9 @@ function App() {
         <ShopContext.Provider
           value={{ products, cart, addToCart, delFromCart }}
         >
+          <header className="flex-bar">
+            <NavBar />
+          </header>
           <Cart />
         </ShopContext.Provider>
       ),
