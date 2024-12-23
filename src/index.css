@@ -16,23 +16,24 @@ button {
   font-style: normal;
   cursor: pointer;
 }
+header{
+  background-color: #0f172a;
 
+}
 .flex-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem;
-  border-bottom: 1px solid black;
-  background-color: #0f172a;
+  padding: 0.2rem;
 }
 
 .flex-bar img {
-  width: 3rem;
+  width: 2rem;
 }
 
 .flex-bar button {
-  height: 3rem;
-  margin: 0 1rem;
+  min-height: 3rem;
+  /* margin: 0 1rem; */
   color: #0ea5e9;
   border: 3px solid #0f172a;
   background-color: inherit;
@@ -43,13 +44,14 @@ button {
 }
 
 .flex-bar span {
-  padding: 0.5rem;
-  font-size: xx-large;
-  border: 2px solid #0ea5e9;
+  /* padding: 0.5rem; */
+  font-size: x-large;
+  /* border: 2px solid #0ea5e9; */
 }
 
 .nav-right,
 .nav-left {
+  gap: 1rem;
   color: #0ea5e9;
   display: flex;
   align-items: center;
@@ -77,12 +79,12 @@ button {
 }
 .banner{
 /* padding: 1rem; */
-  margin: 1rem;
+  margin: 1rem;  
   max-height: 12rem;
   /* max-width: 92rem ; */
   /* background-image: url(./assets/banner.png); */
   background-color: #0ea5e9;
-  background-position: center;
+  /* background-position: center; */
 }
 .flex{
   display: flex;
@@ -258,8 +260,15 @@ button {
   .portrait{
     display: none;
   }
+  .banner{
+    padding: 0;
+    margin: 0 ;
+  }
 .home-info>img{
   max-width: 30rem;
 }
-  
+ .cards{
+  margin-left: 1rem;
+  justify-content: center;
+ } 
 }
