@@ -258,5 +258,8 @@ button {
   .portrait{
     display: none;
   }
+.home-info>img{
+  max-width: 30rem;
+}
   
 }
