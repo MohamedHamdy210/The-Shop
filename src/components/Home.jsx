@@ -1,4 +1,3 @@
-import NavBar from "./NavBar";
 import pr from "../assets/pr.png";
 const Home = () => {
   return (

@@ -1,7 +1,6 @@
 import { ShopContext } from "../App";
 import { useContext } from "react";
 import CartElement from "./CartElement";
-import NavBar from "./NavBar";
 
 export default function Cart() {
   let total = 0;
